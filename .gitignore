@@ -60,5 +60,5 @@ typings/
 # vscode
 .vscode/
 
-mongo-connection.js 
+.mongo-connection.js 
 # module.exports = 'mongodb+srv://...your-connection-string.../DomoMaker-A';
