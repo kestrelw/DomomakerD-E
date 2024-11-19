@@ -25,7 +25,7 @@ const makeDomo = async (req, res) => {
     }
     return res.status(500).json({ error: 'An error occured making domo!' });
   }
-};
+};//
 
 const makerPage = (req, res) => {
   return res.render('app');
