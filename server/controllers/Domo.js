@@ -14,6 +14,8 @@ const makeDomo = async (req, res) => {
     owner: req.session.account._id,
   };
 
+  console.log(domoData);
+
   try {
     const newDomo = new Domo(domoData);
     await newDomo.save();
