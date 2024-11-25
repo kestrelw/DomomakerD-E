@@ -12,13 +12,18 @@ const handleDomo = (e, onDomoAdded) => {
 
     const name = e.target.querySelector('#domoName').value;
     const age = e.target.querySelector('#domoAge').value;
+    let rarity = e.target.querySelector('#domoRarity').value;
 
-    if(!name || !age) {
+    if(!name || !age) {//rarity not required
         helper.handleError('All fields are required');
         return false;
     }
 
-    helper.sendPost(e.target.action, {name, age}, onDomoAdded);
+    // if(!rarity) {//rarity not required
+    //     rarity = Math.floor(Math.random() * 5 +1);
+    // }
+
+    helper.sendPost(e.target.action, {name, age/*, rarity*/}, onDomoAdded);
     return false;
 }
 
@@ -35,7 +40,10 @@ const DomoForm = (props) => {
             <input id="domoName" type="text" name="name" placeholder="Domo Name" />
             <label htmlFor="age">Age: </label>
             <input id="domoAge" type="number" min="0" name="age"/>
+            <label htmlFor="rarity">Rarity: </label>
+            <input id="domoRarity" type="number" min="1" max="5" name="rarity"/>
             <input className="makeDomoSubmit" type="submit" value="Make Domo" />
+            
         </form>
     );
 };
@@ -66,6 +74,7 @@ const DomoList = (props) => {
                 <img src="/assets/img/domoface.jpeg" alt="domo face" className="domoFace" />
                 <h3 className="domoName">Name: {domo.name}</h3>
                 <h3 className="domoAge">Age: {domo.age}</h3>
+                <h3 className="domoRarity">Rarity: {domo.rarity}</h3>
             </div>
         );
     });

@@ -3,13 +3,14 @@ const models = require('../models');
 const { Domo } = models;
 
 const makeDomo = async (req, res) => {
-  if (!req.body.name || !req.body.age) {
+  if (!req.body.name || !req.body.age/* || !req.body.rarity*/) {
     return res.status(400).json({ error: 'Both name and age are required!' });
   }
 
   const domoData = {
     name: req.body.name,
     age: req.body.age,
+    rarity: req.body.rarity || Math.floor(Math.random() * 5 +1),
     owner: req.session.account._id,
   };
 
@@ -17,7 +18,7 @@ const makeDomo = async (req, res) => {
     const newDomo = new Domo(domoData);
     await newDomo.save();
     // req.session.domo = Domo.toAPI(newDomo);
-    return res.status(201).json({ name: newDomo.name, age: newDomo.age });
+    return res.status(201).json({ name: newDomo.name, age: newDomo.age, rarity: newDomo.rarity });
   } catch (err) {
     console.log(err);
     if (err.code === 11000) {
